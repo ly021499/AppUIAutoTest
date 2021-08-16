@@ -6,8 +6,12 @@ from element.login_element import LoginElement
 class LoginPage(ActionPage):
 
     # 基础业务封装
-    def open_page(self):
-        self.open_url("https://www.shiguangkey.com/")
+    def access_permission(self):
+        element = self.locate_element(LoginElement.allow_button)
+        if self.is_displayed(element):
+            self.click(LoginElement.allow_button)
+        else:
+            pass
 
     def click_account_login(self):
         self.click(LoginElement.account_login_element)

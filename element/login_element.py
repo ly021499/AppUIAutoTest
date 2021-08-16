@@ -3,6 +3,7 @@
 
 class LoginElement:
 
+    allow_button = ("xpath", '//*[@text="允许"]')
     # 返回
     back_element = ("id", 'com.sgkt.phone:id/iv_back')
     # 账号登录文本
