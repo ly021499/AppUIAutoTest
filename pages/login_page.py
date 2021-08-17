@@ -7,34 +7,42 @@ class LoginPage(ActionPage):
 
     # 基础业务封装
     def access_permission(self):
-        element = self.locate_element(LoginElement.allow_button)
-        if self.is_displayed(element):
-            self.click(LoginElement.allow_button)
-        else:
-            pass
+        for i in range(4):
+            try:
+                element = self.locate_element(LoginElement.allow_button_element)
+                if self.is_displayed(element):
+                    element.click()
+            except:
+                pass
 
-    def click_account_login(self):
+    def agree_deal(self):
+        self.locate_element(LoginElement.agree_deal_element).click()
+        # self.click(LoginElement.agree_deal_element)
+
+    def back_home_page(self):
+        self.click(LoginElement.back_element)
+
+    def account_login(self):
         self.click(LoginElement.account_login_element)
 
-    def get_assert_text(self):
-        return self.get_text(LoginElement.assert_text_element)
+    def phone_login(self):
+        self.click(LoginElement.phone_login_element)
 
     # 业务逻辑封装
     def account_login_action(self, account, password):
-        self.click_account_login()
+        self.account_login()
         self.send_value(LoginElement.account_element, account)
         self.send_value(LoginElement.password_element, password)
         self.click(LoginElement.login_element)
 
 
 if __name__ == '__main__':
-    from selenium import webdriver
-    driver = webdriver.Chrome()
+    from tool.tools import get_appium_driver
+    driver = get_appium_driver()
     lp = LoginPage(driver)
-    lp.open_page()
-    lp.account_login_action("t0301528378", "Mozart1998.?")
+    lp.access_permission()
     import time
-    time.sleep(1)
-    text = driver.find_element_by_xpath('//div[@class="userinfo-top"]/p').text
-    print(text)
+    time.sleep(3)
+    lp.agree_deal()
+    lp.account_login_action('t0373805249', '123456')
 

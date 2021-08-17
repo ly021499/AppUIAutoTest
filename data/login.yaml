@@ -1,9 +1,7 @@
 -
-  account: jack
+  account: t0373805249
   password: 123456
-  assert_type: 0
 
 -
   account: t0301528378
   password: Mozart1998.?
-  assert_type: 1

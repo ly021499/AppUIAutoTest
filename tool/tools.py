@@ -1,7 +1,6 @@
 #!/usr/bin/python
 from appium import webdriver
-from core.read_config import config
-import os
+from tool import adb_shell
 
 
 def get_yaml_path(filename):
@@ -38,13 +37,9 @@ def get_appium_driver(port=None, **kwargs):
     host = get_host(port)
     capabilities = get_capabilities(**kwargs)
     driver = webdriver.Remote(host, capabilities)
+    adb_shell.install_app()
     return driver
 
 
 if __name__ == '__main__':
-    cap = {
-        "appPackage": "com.tencent.news",
-        "appActivity": "com.tencent.news.activity.SplashActivity"
-    }
-    drivers = get_appium_driver(**cap)
-    print(drivers)
+    get_appium_driver()

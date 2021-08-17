@@ -3,11 +3,17 @@
 
 class LoginElement:
 
-    allow_button = ("xpath", '//*[@text="允许"]')
+    # 账号权限获取
+    allow_button_element = ("xpath", '//*[@text="允许"]')
+    # 同意协议
+    agree_deal_element = ('id', 'com.sgkt.phone:id/tv_agree')
     # 返回
     back_element = ("id", 'com.sgkt.phone:id/iv_back')
-    # 账号登录文本
+    # 登录方式-账号登录
     account_login_element = ("xpath", '//*[@text="账号登录"]')
+    # 登录方式-账号登录
+    phone_login_element = ("id", 'com.sgkt.phone:id/btn_login_phone')
+
     # 账号输入框
     account_element = ("xpath", '//*[@text="请输入手机号或潭州账号"]')
     # 密码输入框
@@ -15,5 +21,3 @@ class LoginElement:
     # 登录按钮
     login_element = ('id', 'com.sgkt.phone:id/btn_login')
 
-    # 断言文本
-    assert_text_element = ("xpath", '//div[@class="userinfo-top"]/p')

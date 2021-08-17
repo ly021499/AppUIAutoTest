@@ -84,16 +84,9 @@ class ActionPage(object):
         element = self.locate_element(loc)
         try:
             element.click()
-            logger.info("The element \' {} \' was clicked.".format(element.get_attribute('value')))
+            logger.info("clicked The element")
         except Exception as e:
-            display = self.is_displayed(element)
-            if display is True:
-                self.sleep(3)
-                element.click()
-                logger.info('The element was clicked')
-            else:
-                self.save_image()
-                logger.error('Failed to click the element, Error: {}'.format(e))
+            logger.error('Failed to click the element, Error: {}'.format(e))
 
     def save_image(self):
         """
