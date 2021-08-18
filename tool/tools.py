@@ -1,6 +1,8 @@
 #!/usr/bin/python
 from appium import webdriver
 from tool import adb_shell
+from core.read_config import config
+import os
 
 
 def get_yaml_path(filename):
@@ -16,6 +18,7 @@ def get_host(port=None):
 
 
 def get_capabilities(**kwargs):
+    app_path = os.path.join(config.BASE_DIR, 'app', 'tzkt.apk')
     capabilities = {
         # 平台：Android / iOS
         'platformName': 'Android',
@@ -26,7 +29,8 @@ def get_capabilities(**kwargs):
         # apk包名
         'appPackage': 'com.sgkt.phone',
         # apk的launcherActivity
-        'appActivity': 'com.sgkt.phone.ui.activity.AppStartActivity'
+        'appActivity': 'com.sgkt.phone.ui.activity.AppStartActivity',
+        'app': app_path,
     }
     if kwargs:
         capabilities.update(**kwargs)
@@ -37,7 +41,6 @@ def get_appium_driver(port=None, **kwargs):
     host = get_host(port)
     capabilities = get_capabilities(**kwargs)
     driver = webdriver.Remote(host, capabilities)
-    adb_shell.install_app()
     return driver
 
 
